@@ -5,13 +5,13 @@ import { Container, Content } from './styles';
 import Sidebar from '../../components/Sidebar';
 import Topbar from '../../components/Topbar';
 
-const App: React.FunctionComponent = ({ children }) => {
+const App: React.FC = ({ children }) => {
   
   return (
     <Container>
-      <Sidebar />
+      <Topbar />
       <Content>
-        <Topbar />
+        <Sidebar />
         {children}
       </Content>
     </Container>

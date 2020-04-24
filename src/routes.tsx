@@ -1,21 +1,21 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 
-import App from './pages/template/App';
-import home from './pages/template/home';
+import App from './templates/App';
+import home from './templates/home';
 
-// import Dashboard from './pages/Dashboard';
+import Dashboard from './pages/Dashboard';
 
 interface IRouter {
   base: string;
-  Template: React.ElementType;
+  Template: React.ComponentClass | React.FC;
   routes: IRoute[]
 }
 
 interface IRoute {
   path: string;
   exact?: boolean;
-  component: React.ComponentClass | React.FC;
+  Component: React.ComponentClass | React.FC;
 }
 
 const routers: IRouter[] = [
@@ -26,11 +26,11 @@ const routers: IRouter[] = [
       {
         path: '/',
         exact: true,
-        component: () => <div>Home</div>
+        Component: () => <div>Home</div>
       },
       {
         path: '/login',
-        component: () => <div>Login</div>
+        Component: () => <div>Login</div>
       }
     ]
   },
@@ -40,19 +40,19 @@ const routers: IRouter[] = [
     routes: [
       {
         path: '/dashboard',
-        component: () => <div>Dashboard</div>
+        Component: Dashboard
       },
       {
         path: '/search',
-        component: () => <div>Procurar</div>
+        Component: () => <div>Procurar</div>
       },
       {
         path: '/chat',
-        component: () => <div>Chat</div>
+        Component: () => <div>Chat</div>
       },
       {
         path: '/settings',
-        component: () => <div>Configurações</div>
+        Component: () => <div>Configurações</div>
       },
     ]
   }
@@ -63,14 +63,14 @@ export default function Routes() {
     <BrowserRouter>
       <Switch>
         {routers.map(({ routes, Template, base }) => 
-          routes.map((route, i) => (
+          routes.map(({ exact, path, Component }, i) => (
             <Route 
               key={i} 
-              exact={route.exact || false} 
-              path={`${base}${route.path}`}
+              exact={exact || false} 
+              path={`${base}${path}`}
             >
               <Template>
-                <route.component />
+                <Component />
               </Template>
             </Route>
           ))

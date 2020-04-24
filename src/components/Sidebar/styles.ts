@@ -1,18 +1,34 @@
 import styled, { css } from 'styled-components';
 import { Link } from 'react-router-dom';
 
+import { device } from '../../utils/devices';
+
 interface INavLink {
   selected: boolean;
 }
 
-export const Container = styled.section`
+interface IContainer {
+  open: boolean;
+}
+
+export const Container = styled.section<IContainer>`
+  top: 8vh;
+  position: sticky;
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: #352D39;
-  min-height: 100%;
+  height: 92vh;
   color: #FFF;
-  width: 80px
+  width: 65px;
+  transition: 0.5s display;
+  
+  @media ${device.mobileL} {
+      ${props => !props.open &&
+  css`
+      display: none;
+    `};
+  }
 `;
 
 export const Logo = styled(Link)`
@@ -34,13 +50,12 @@ export const NavLink = styled(Link)<INavLink>`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 65px;
+  height: 60px;
   ${props => props.selected && 
     css`
       border-left: 5px solid #FFFFFF;
       background-color: #615866;
-    `}
-  
+    `};
   width: 100%;
   transition: 0.3s background-color;
 
@@ -57,10 +72,10 @@ export const AddButton = styled.button`
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  height: 50px;
-  width: 50px;
+  height: 45px;
+  width: 45px;
   background-color: #6F5BD7;
-  margin-top: 20px;
+  margin-top: 25px;
   transition: 0.3s background-color;
 
   &:hover {

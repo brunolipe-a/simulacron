@@ -18,6 +18,7 @@ const GlobalStyle = createGlobalStyle`
   body, button, input {
     font-family: 'Rubik', Arial, Helvetica, sans-serif;
     font-size: 14px;
+    -webkit-font-smoothing: antialiased;
   }
 
   button, input[type="submit"], input[type="reset"], a {
@@ -45,6 +46,20 @@ const GlobalStyle = createGlobalStyle`
 
   ::placeholder {
     color: #A6A6A6;
+  }
+  
+    ::-webkit-scrollbar {
+    overflow: visible;
+    width: 7px;
+    height: 7px;
+  }
+  ::-webkit-scrollbar-track {
+    background-color: rgba(210, 199, 214, 0.5);
+    border-radius: 10px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: #352D39;
+    border-radius: 10px;
   }
 `;
 

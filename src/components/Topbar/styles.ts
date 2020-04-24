@@ -1,15 +1,29 @@
 import styled from 'styled-components';
 import { AiOutlineSearch } from 'react-icons/ai';
-
 import { Link } from 'react-router-dom';
 
+import { device } from '../../utils/devices';
+
 export const Container = styled.header`
+  top: 0;
+  position: sticky;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  width: 100%;
   background-color: #F3F1F4;
-  height: 60px
+  padding: 0 15px;
+  height: 8vh;
+  
+  & > div {
+   display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    
+    @media ${device.mobileL} {
+      width: 100%;
+    }
+  }
 `;
 
 export const SearchInput = styled.div`
@@ -19,14 +33,17 @@ export const SearchInput = styled.div`
   background: #FFFFFF;
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.15);
   border-radius: 8px;
-  height: 38px;
-  width: 400px;
-  margin-left: 50px;
+  height: 33px;
+  width: 100%;
+  max-width: 380px;
 
   & input {
     width: 100%;
     color: #666;
-    font-size: 15px;
+    font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 `;
 
@@ -42,6 +59,7 @@ export const BellIcon = styled(Link)`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-left:15px;
 `;
 
 export const NotificationDot = styled.div`
@@ -63,16 +81,19 @@ export const AvatarGroup = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-right: 40px;
 
   & img {
     margin: 0 15px 0 18px;
-    width: 45px;
+    width: 40px;
     border-radius: 50%
   }
 
   & p {
     color: #404040;
+    
+    @media ${device.tablet} {
+      display: none;
+    }
   }
 `;
 

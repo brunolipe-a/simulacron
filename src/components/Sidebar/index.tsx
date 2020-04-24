@@ -6,7 +6,7 @@ import { MdDashboard, MdChatBubbleOutline } from 'react-icons/md';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { FiSettings } from 'react-icons/fi';
 import { FaPlus } from 'react-icons/fa';
-import LogoAlt from '../../../assets/LogoAlt';
+import LogoAlt from '../../assets/LogoAlt';
 
 import { Container, Logo, Nav, NavLink, AddButton } from './styles';
 
@@ -43,11 +43,7 @@ export default function Sidebar() {
 
   useEffect(() => {
     const newNavLinks = navlinks.map( navlin => {
-      if (pathname.indexOf(navlin.path) >= 0) {
-        navlin.selected = true;
-      } else {
-        navlin.selected = false;
-      }
+      navlin.selected = pathname.indexOf(navlin.path) >= 0;
 
       return navlin;
     });
@@ -56,7 +52,7 @@ export default function Sidebar() {
   }, [pathname]);
 
   return (
-    <Container>
+    <Container open={true}>
       <Logo to="/app">
         <LogoAlt scale={1.1} />
       </Logo>
@@ -67,7 +63,7 @@ export default function Sidebar() {
           </NavLink>
         ))}
         <AddButton data-tip="Adicionar">
-          <FaPlus color="#FFF" size={22}  />
+          <FaPlus color="#FFF" size={20}  />
         </AddButton>
       </Nav>
       <ReactTooltip place="right" effect="solid" />
